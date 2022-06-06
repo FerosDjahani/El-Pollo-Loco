@@ -1,4 +1,4 @@
-class World {
+class World extends MovableObject {
     gameEndScreen = new BackgroundObject('img/9.Intro _ Outro Image/_Game over_ screen/3.Game over.png', 0);
     character = new Character();
     level = level1;
@@ -18,7 +18,16 @@ class World {
     AUDIO_throw = new Audio('audio/throw.mp3');
 
 
+
+
+
+
+
+
+
+
     constructor(canvas, keyboard) {
+        super();
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -148,7 +157,7 @@ class World {
         });
     }
 
-    
+
 
     draw() {
 
