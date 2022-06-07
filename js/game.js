@@ -16,10 +16,10 @@ function init() {
 
     canvas = document.getElementById('canvas');
 
-    world = new World(canvas, keyboard);
 
 
-    console.log('My Charackter is', world.character);
+
+
 
 }
 
@@ -132,6 +132,10 @@ function Info() {
 }
 
 function start() {
+
+    initLevel();
+    world = new World(canvas, keyboard);
+    console.log('My Charackter is', world.character);
     document.getElementById('NewGame').classList.remove('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('start').classList.add('d-none');

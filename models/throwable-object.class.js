@@ -35,7 +35,6 @@ class ThrowableObject extends MovableObject {
         this.height = 60;
         this.width = 50;
         this.throw();
-        this.checksplashBottle();
 
 
 
@@ -45,12 +44,18 @@ class ThrowableObject extends MovableObject {
     throw () {
 
 
+
         this.speedY = 30;
         this.applyGravity();
         setInterval(() => {
             this.playAnimation(this.IMAGES_ROTATE);
             this.x += 10;
         }, 25);
+
+        this.playInterval = setInterval(() => {
+            this.checksplashBottle();
+        }, 100);
+
     }
 
     checksplashBottle() {
