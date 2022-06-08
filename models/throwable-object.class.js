@@ -48,8 +48,12 @@ class ThrowableObject extends MovableObject {
         this.speedY = 30;
         this.applyGravity();
         setInterval(() => {
-            this.playAnimation(this.IMAGES_ROTATE);
+
             this.x += 10;
+
+            if (this.isAboveGround()) {
+                this.checksplashBottle();
+            }
         }, 25);
 
         this.playInterval = setInterval(() => {

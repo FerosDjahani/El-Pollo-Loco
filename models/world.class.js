@@ -65,6 +65,7 @@ class World extends MovableObject {
             if (this.statusbarBottles.amount > 0) {
                 this.statusbarBottles.amount--;
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                bottle.groundPos = 400;
                 this.throwableObjects.push(bottle);
                 this.statusbarBottles.setAmount();
                 this.AUDIO_throw.play();
