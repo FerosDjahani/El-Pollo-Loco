@@ -59,10 +59,15 @@ class ThrowableObject extends MovableObject {
     }
 
     checksplashBottle() {
-        if (endboss.isColliding(bottle)) {
-            this.playAnimation(this.IMAGES_SPLASH);
-        } else {
+
+
+        if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_ROTATE);
+        } else {
+            this.playAnimation(this.IMAGES_SPLASH);
+            setTimeout(() => {
+                clearInterval(this.playInterval);
+            }, 400)
         }
     }
 
