@@ -87,7 +87,7 @@ class Endboss extends MovableObject {
             this.playAnimation(this.IMAGES_DEAD);
             world.character.energy = 0;
 
-        }, 350);
+        }, 50);
 
 
     }
