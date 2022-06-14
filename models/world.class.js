@@ -9,15 +9,17 @@ class World extends MovableObject {
     statusBar = new Statusbar();
     statusbarBottles = new StatusbarBottles();
     statusbarCoins = new StatusbarCoins();
+    StatusBarEndboss = new StatusBarEndboss();
     throwableObjects = [];
     bottles = new Bottle();
     AUDIO_coin = new Audio('audio/coin.mp3');
-    AUDIO_broke = new Audio('audio/broke.mp3');
     AUDIO_Chicken = new Audio('audio/chicken.mp3');
     AUDIO_Boss = new Audio('audio/chickenboss.mp3');
     AUDIO_throw = new Audio('audio/throw.mp3');
+    AUDIO_pickup = new Audio('audio/pickup.mp3')
+    AUDIO_BOSSDeath = new Audio('audio/endbossdeath.mp3')
 
-
+    isalreadyDamaged = false;
 
 
 
@@ -94,15 +96,28 @@ class World extends MovableObject {
     }
 
     checkCollisionBottleAndEndboss() {
+
         this.throwableObjects.forEach((bottle) => {
             this.level.endboss.forEach((endboss) => {
-                if (endboss.isColliding(bottle)) {
-                    endboss.endbossHurt();
+                if (bottle.deletable) {
+                    this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
+                }
+                if (endboss.isColliding(bottle) && isalreadyDamaged == false) {
+                    endboss.hit();
+                    this.isalreadyDamaged == true;
+                    this.AUDIO_Boss.play()
+                    this.StatusBarEndboss.setPercentage(this.level.endboss[0].energy);
 
+                    setTimeout(() => {
+                        if (isalreadyDamaged == true) {
+                            this.isalreadyDamaged == false;
+                        }
+                    }, 2000)
                 }
                 if (endboss.isDead()) {
                     endboss.endbossDies();
-                    this.AUDIO_Boss.play()
+                    this.AUDIO_BOSSDeath.play();
+
                     setTimeout(() => {
                         this.level.endboss.splice(this.level.endboss.indexOf(endboss), 1);
                     }, 943);
@@ -114,11 +129,12 @@ class World extends MovableObject {
     checkCollisionWithBottle() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
+                this.AUDIO_pickup.play();
                 this.statusbarBottles.amount++;
                 this.statusbarBottles.setAmount();
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
                 console.log('Collision with ', bottle);
-                this.AUDIO_broke.play();
+
 
             }
         });
@@ -167,6 +183,7 @@ class World extends MovableObject {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.ctx.translate(-this.camera_x, 0); // back
         this.addToMap(this.statusBar);
+        this.addToMap(this.StatusBarEndboss);
         this.addToMap(this.statusbarBottles);
         this.addToMap(this.statusbarCoins);
         this.ctx.translate(this.camera_x, 0); // Forwards

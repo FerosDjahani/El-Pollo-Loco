@@ -1,7 +1,9 @@
 class ThrowableObject extends MovableObject {
 
+    AUDIO_broke = new Audio('audio/broke.mp3');
 
 
+    deletable = false;
 
 
     IMAGES_ROTATE = [
@@ -57,6 +59,7 @@ class ThrowableObject extends MovableObject {
 
         this.playInterval = setInterval(() => {
             this.checksplashBottle();
+
         }, 100);
 
     }
@@ -68,10 +71,17 @@ class ThrowableObject extends MovableObject {
             this.playAnimation(this.IMAGES_ROTATE);
         } else {
             this.playAnimation(this.IMAGES_SPLASH);
+            this.AUDIO_broke.play();
             setTimeout(() => {
                 clearInterval(this.playInterval);
             }, 400)
         }
+
+        setTimeout(() => {
+            if (this.playAnimation(this.IMAGES_SPLASH)) {
+                this.bottle.deletable == true;
+            }
+        }, 2000)
     }
 
 
