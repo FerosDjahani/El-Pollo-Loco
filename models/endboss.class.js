@@ -6,6 +6,7 @@ class Endboss extends MovableObject {
     energy = 100;
     contactWithCharacter = false;
 
+
     IMAGES_ANGRY = [
         './img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
         './img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G6.png',
@@ -56,12 +57,12 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_HURTING);
         this.loadImages(this.IMAGES_DEAD);
-        this.speed = 0.1;
+        this.speed = 0.05;
         this.animate();
     }
 
     endbossHurt() {
-        this.energy -= 10;
+        this.energy -= 50;
         if (this.energy < 0) {
             this.energy = 0;
         }

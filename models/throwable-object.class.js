@@ -79,9 +79,9 @@ class ThrowableObject extends MovableObject {
 
         setTimeout(() => {
             if (this.playAnimation(this.IMAGES_SPLASH)) {
-                this.bottle.deletable == true;
+                this.bottle.deletable = true;
             }
-        }, 2000)
+        }, 1000)
     }
 
 

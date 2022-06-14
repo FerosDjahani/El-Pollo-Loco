@@ -104,13 +104,13 @@ class World extends MovableObject {
                 }
                 if (endboss.isColliding(bottle) && this.isalreadyDamaged == false) {
                     endboss.hit();
-                    this.isalreadyDamaged == true;
+                    this.isalreadyDamaged = true;
                     this.AUDIO_Boss.play()
                     this.StatusBarEndboss.setPercentage(this.level.endboss[0].energy);
 
                     setTimeout(() => {
                         if (this.isalreadyDamaged == true) {
-                            this.isalreadyDamaged == false;
+                            this.isalreadyDamaged = false;
                         }
                     }, 2000)
                 }
