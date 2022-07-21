@@ -28,6 +28,9 @@ class StatusbarCoins extends DrawableObject {
         this.img = this.imageCache[path];
     }
 
+    // collect item options
+
+
     resolveImageIndex() {
         if (this.amount == 0) {
             return 0;

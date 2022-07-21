@@ -1,3 +1,6 @@
+//endboss instructions
+
+
 class Endboss extends MovableObject {
 
     height = 400;
@@ -5,7 +8,7 @@ class Endboss extends MovableObject {
     y = 55;
     energy = 100;
     contactWithCharacter = false;
-
+    AUDIO_win = new Audio('audio/win.mp3');
 
     IMAGES_ANGRY = [
         './img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
@@ -49,7 +52,6 @@ class Endboss extends MovableObject {
         './img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'
     ];
 
-
     constructor() {
         super().loadImage('./img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png');
         this.x = 2500;
@@ -60,6 +62,8 @@ class Endboss extends MovableObject {
         this.speed = 0.05;
         this.animate();
     }
+
+    //Endboss movement animations
 
     endbossHurt() {
         this.energy -= 50;
@@ -74,14 +78,9 @@ class Endboss extends MovableObject {
         }, 1000);
     }
 
-
-
-
-
     letEndbossWalk() {
         this.contactWithCharacter = true;
     }
-
 
     endbossDies() {
         let tt = setInterval(() => {
@@ -90,7 +89,7 @@ class Endboss extends MovableObject {
 
         }, 50);
 
-
+        this.AUDIO_win.play();
     }
 
     endbossMoveLeft() {
@@ -98,9 +97,6 @@ class Endboss extends MovableObject {
             this.moveLeft();
         }, 1000 / 60);
     }
-
-
-
 
     animate() {
         setInterval(() => {

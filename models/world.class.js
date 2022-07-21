@@ -12,13 +12,15 @@ class World extends MovableObject {
     StatusBarEndboss = new StatusBarEndboss();
     throwableObjects = [];
     bottles = new Bottle();
+
+
+    // game item sounds
     AUDIO_coin = new Audio('audio/coin.mp3');
     AUDIO_Chicken = new Audio('audio/chicken.mp3');
     AUDIO_Boss = new Audio('audio/chickenboss.mp3');
     AUDIO_throw = new Audio('audio/throw.mp3');
-    AUDIO_pickup = new Audio('audio/pickup.mp3')
-    AUDIO_BOSSDeath = new Audio('audio/endbossdeath.mp3')
-
+    AUDIO_pickup = new Audio('audio/pickup.mp3');
+    AUDIO_BOSSDeath = new Audio('audio/endbossdeath.mp3');
     isalreadyDamaged = false;
 
 
@@ -27,6 +29,7 @@ class World extends MovableObject {
 
 
 
+    //gameworld options and movements
 
     constructor(canvas, keyboard) {
         super();
@@ -36,7 +39,6 @@ class World extends MovableObject {
         this.draw();
         this.setWorld();
         this.run();
-
     }
 
     setWorld() {
@@ -76,6 +78,8 @@ class World extends MovableObject {
         }
     }
 
+    //collision with enemies
+
     checkcollisions() {
         this.level.enemies.forEach((enemy) => {
             if (!this.character.isDead() && !enemy.isDead() && !this.character.isHurt() && this.character.isColliding(enemy)) {
@@ -84,6 +88,7 @@ class World extends MovableObject {
                     console.log('chicken dead');
                     enemy.kill();
                     this.AUDIO_Chicken.play();
+                    this.AUDIO_Chicken.volume = 0.2;
                 } else {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
@@ -94,6 +99,9 @@ class World extends MovableObject {
 
         });
     }
+
+    //collision with bottle item with Endboss options
+
 
     checkCollisionBottleAndEndboss() {
 
@@ -106,6 +114,7 @@ class World extends MovableObject {
                     endboss.hit();
                     this.isalreadyDamaged = true;
                     this.AUDIO_Boss.play()
+                    this.AUDIO_Boss.volume = 0.4;
                     this.StatusBarEndboss.setPercentage(this.level.endboss[0].energy);
 
                     setTimeout(() => {
@@ -126,19 +135,24 @@ class World extends MovableObject {
         });
     }
 
+    //collecting bottle Items
+
+
     checkCollisionWithBottle() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 this.AUDIO_pickup.play();
+                this.AUDIO_pickup.volume = 0.4;
                 this.statusbarBottles.amount++;
                 this.statusbarBottles.setAmount();
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
                 console.log('Collision with ', bottle);
-
-
             }
         });
     }
+
+    //collecting coin Items
+
 
     checkCollisionWithCoin() {
         this.level.coins.forEach((coin) => {
@@ -148,9 +162,13 @@ class World extends MovableObject {
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
                 console.log('Collision with ', coin);
                 this.AUDIO_coin.play();
+                this.AUDIO_coin.volume = 0.4;
             }
         });
     }
+
+    //collision with character and Endboss
+
 
     checkCollisionsWithEndboss() {
         this.level.endboss.forEach((endboss) => {
@@ -160,6 +178,8 @@ class World extends MovableObject {
             }
         });
     }
+
+    //this will happen if character is near Endboss
 
     checkCharacterIsNearToEndboss() {
         this.level.endboss.forEach((endboss) => {
@@ -175,6 +195,7 @@ class World extends MovableObject {
     }
 
 
+    // Draw() will always introduce
 
     draw() {
 
@@ -198,22 +219,8 @@ class World extends MovableObject {
 
         if (this.character.isDead()) {
             this.addToMap(this.gameEndScreen);
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
-        // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function() {
             self.draw();
@@ -232,14 +239,10 @@ class World extends MovableObject {
         }
         mo.draw(this.ctx);
 
-
-
-
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
-
 
     flipImage(mo) {
         this.ctx.save();

@@ -1,10 +1,8 @@
+//Bottle animation options
+
 class ThrowableObject extends MovableObject {
 
     AUDIO_broke = new Audio('audio/broke.mp3');
-
-
-    deletable = false;
-
 
     IMAGES_ROTATE = [
         'img/6.botella/Rotación/Mesa de trabajo 1 copia 3.png',
@@ -21,11 +19,7 @@ class ThrowableObject extends MovableObject {
         'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png',
         'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
         'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png',
-
-
     ];
-
-
 
     constructor(x, y) {
         super();
@@ -37,16 +31,9 @@ class ThrowableObject extends MovableObject {
         this.height = 60;
         this.width = 50;
         this.throw();
-
-
-
     }
 
-
     throw () {
-
-
-
         this.speedY = 30;
         this.applyGravity();
         setInterval(() => {
@@ -66,7 +53,6 @@ class ThrowableObject extends MovableObject {
 
     checksplashBottle() {
 
-
         if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_ROTATE);
         } else {
@@ -79,15 +65,9 @@ class ThrowableObject extends MovableObject {
 
         setTimeout(() => {
             if (this.playAnimation(this.IMAGES_SPLASH)) {
-                this.bottle.deletable = true;
+
             }
         }, 1000)
     }
-
-
-
-
-
-
 
 }

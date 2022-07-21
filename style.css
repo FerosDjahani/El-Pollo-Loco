@@ -1,3 +1,5 @@
+/* --------------Startscreen and Game View Desktop ---------------*/
+
 body {
     margin: 0;
     background-image: url("img/5.Fondo/Capas/5.cielo_1920-1080px.png");
@@ -10,7 +12,7 @@ canvas {
 }
 
 .fullscreen {
-    width: 210px;
+    width: 200px;
     height: 70px;
     font-size: 40px;
     font-weight: bold;
@@ -19,11 +21,16 @@ canvas {
     border-radius: 10px;
     border: none;
     position: absolute;
+    cursor: pointer;
+}
+
+.fullscreen:hover {
+    background-color: rgba(4, 45, 100, 0.7);
 }
 
 .fullscreen5 {
     width: 100px;
-    height: 40px;
+    height: 30px;
     font-size: 18px;
     font-weight: bold;
     background-color: rgba(0, 38, 110, 0.801);
@@ -52,6 +59,19 @@ canvas {
     color: rgba(252, 236, 7, 0.8);
     border-radius: 10px;
     border: none;
+}
+
+.stopmusic1 {
+    height: 20px;
+    margin-top: -8px;
+    color: rgb(21, 23, 155);
+    background-color: rgb(238, 225, 43);
+    cursor: pointer;
+}
+
+.stopmusic1:hover {
+    background-color: rgb(12, 12, 104);
+    color: rgb(253, 253, 67);
 }
 
 .btn1 {
@@ -105,7 +125,6 @@ canvas {
     position: absolute;
     padding: 20px;
     bottom: 80px;
-    cursor: pointer;
 }
 
 .buttons {
@@ -145,12 +164,21 @@ canvas {
 .closebtn {
     background-color: rgb(34, 34, 160);
     color: rgb(212, 212, 18);
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    background-color: rgb(212, 212, 18);
+    color: rgb(34, 34, 160);
 }
 
 .headd {
     color: rgb(212, 212, 18);
     ;
 }
+
+
+/* --------------Controll functions for Mobileview ---------------*/
 
 .mobile_controlls {
     width: 70px;
@@ -173,31 +201,31 @@ canvas {
 
 #left {
     position: absolute;
-    left: 10%;
-    bottom: 10%;
+    left: 9%;
+    top: 110%;
 }
 
 #right {
     position: absolute;
-    left: 25%;
-    bottom: 10%;
+    left: 27%;
+    top: 110%;
 }
 
 #jump {
     position: absolute;
-    right: 25%;
-    bottom: 10%;
+    right: 28%;
+    top: 110%;
 }
 
 #throw {
     position: absolute;
     right: 10%;
-    bottom: 10%;
+    top: 110%;
+    font-size: 18px;
 }
 
-.d-none {
-    display: none;
-}
+
+/* --------------Mobileview ---------------*/
 
 @media only screen and (max-width: 720px) {
     canvas {
@@ -209,10 +237,28 @@ canvas {
     .restart_mobile {
         left: 38%;
     }
+    .fullscreen {
+        width: 100px;
+        font-size: 15px;
+        height: 50px;
+        margin-left: 50px;
+    }
+    .startcover {
+        height: 40%;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        margin: 60px;
+        margin-top: 200px;
+    }
 }
 
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
     }
+}
+
+.d-none {
+    display: none;
 }

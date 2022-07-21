@@ -6,9 +6,7 @@ class DrawableObject {
     y = 350;
     height = 100;
     width = 100;
-
-
-
+    deletable = false;
 
     //loadImage('img/test.png);
     loadImage(path) {
@@ -16,14 +14,9 @@ class DrawableObject {
         this.img.src = path;
     }
 
-
-
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
-
-
-
 
     loadImages(arr) {
         arr.forEach((path) => {

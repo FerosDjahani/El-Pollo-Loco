@@ -1,9 +1,8 @@
+//Game Objects 
+
 let level1;
 
 function initLevel() {
-
-
-
     level1 = new Level(
         [
             new Chicken(),
@@ -58,7 +57,5 @@ function initLevel() {
         ], [
             new Endboss()
         ],
-
-
     );
 }

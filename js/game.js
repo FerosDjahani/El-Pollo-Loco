@@ -1,27 +1,27 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+
+//audio and music
+let musicOn = false;
 AUDIO_music = new Audio('audio/music.mp3');
 AUDIO_musicnext = new Audio('audio/nextmusic.mp3');
 AUDIO_jump = new Audio('audio/jump.mp3');
+AUDIO_music.volume = 0.2;
+AUDIO_musicnext.volume = 0.2;
 
-
-
+//load Page
 
 function init() {
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('startfull').classList.add('d-none');
     document.getElementById('NewGame').classList.add('d-none');
     document.getElementById('header').classList.add('d-none');
-
     canvas = document.getElementById('canvas');
-
-
-
-
-
-
 }
+
+
+// Keyboard and Control section
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {
@@ -48,8 +48,6 @@ window.addEventListener("keydown", (e) => {
 
     }
 
-
-
 });
 
 window.addEventListener("keyup", (e) => {
@@ -75,10 +73,9 @@ window.addEventListener("keyup", (e) => {
         keyboard.D = false;
     }
 
-
 });
 
-
+//mobile control section
 
 function touchDownLeft() {
     keyboard.LEFT = true;
@@ -117,22 +114,51 @@ function touchUpThrow() {
     keyboard.D = false;
 }
 
-function music() {
-    this.AUDIO_music.play();
+//game background music functions
 
+function music() {
+    if (musicOn == false) {
+        musicOn = true;
+    } else {
+        musicOn = false;
+    }
+    MusicFunction1();
+}
+
+function MusicFunction1() {
+    if (musicOn == true) {
+        AUDIO_music.play();
+    }
+    if (musicOn == false) {
+        AUDIO_music.pause();
+    }
 }
 
 function music2() {
-    this.AUDIO_musicnext.play();
-
+    if (musicOn == false) {
+        musicOn = true;
+    } else {
+        musicOn = false;
+    }
+    playMusic2();
 }
+
+function playMusic2() {
+    if (musicOn == true) {
+        AUDIO_musicnext.play();
+    }
+    if (musicOn == false) {
+        AUDIO_musicnext.pause();
+    }
+}
+
+//Game Start Screen - Main Functions
 
 function Info() {
     document.getElementById('infoBox').classList.remove('d-none');
 }
 
 function start() {
-
     initLevel();
     world = new World(canvas, keyboard);
     console.log('My Charackter is', world.character);
@@ -146,12 +172,7 @@ function start() {
     document.getElementById('right').classList.remove('d-none');
     document.getElementById('jump').classList.remove('d-none');
     document.getElementById('throw').classList.remove('d-none');
-
-
-
 }
-
-
 
 function Restart() {
     reload();
@@ -159,18 +180,12 @@ function Restart() {
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('startfull').classList.remove('d-none');
     document.getElementById('start').classList.add('d-none');
-
-
-
 }
 
-
 function closeInfo() {
-
     document.getElementById('infoBox').classList.add('d-none');
 }
 
 function reload() {
     window.location = 'index.html';
-
 }

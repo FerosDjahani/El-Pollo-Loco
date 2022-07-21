@@ -24,14 +24,11 @@ class Chick extends MovableObject {
 
     }
 
-
-
     kill() {
         super.kill();
     }
 
-
-
+    //enemy movement instructions
 
     animate() {
         setInterval(() => {

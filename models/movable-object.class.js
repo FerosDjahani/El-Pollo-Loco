@@ -1,3 +1,5 @@
+//game functions
+
 class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
@@ -20,7 +22,6 @@ class MovableObject extends DrawableObject {
     isAboveGround() {
         return this.y < this.groundPos;
     }
-
 
     isColliding(mo) {
         return this.x + this.width > mo.x &&
@@ -52,9 +53,6 @@ class MovableObject extends DrawableObject {
     isDead() {
 
         return this.energy == 0;
-
-
-
     }
 
 

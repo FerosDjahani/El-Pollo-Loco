@@ -1,10 +1,11 @@
+//Main Character Instructions
+
 class Character extends MovableObject {
 
     height = 280;
     y = 155;
     speed = 4.5;
     AUDIO_hurt = new Audio('audio/hurt.mp3');
-
 
     IMAGES_WALKING = [
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
@@ -26,8 +27,6 @@ class Character extends MovableObject {
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-38.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-39.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-40.png',
-
-
     ];
 
     IMAGES_DEAD = [
@@ -83,6 +82,8 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    //character Movement Animation
+
     animate() {
 
         setInterval(() => {
@@ -91,11 +92,13 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.otherDirection = false;
                 this.walking_sound.play();
+                this.walking_sound.volume = 0.3;
             }
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
                 this.walking_sound.play();
+                this.walking_sound.volume = 0.3;
             }
 
 
