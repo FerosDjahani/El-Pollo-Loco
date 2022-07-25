@@ -43,6 +43,7 @@ class World extends MovableObject {
 
     setWorld() {
         this.character.world = this;
+
     }
 
     run() {

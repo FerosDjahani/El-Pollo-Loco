@@ -55,6 +55,8 @@ class ThrowableObject extends MovableObject {
 
         if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_ROTATE);
+        } else if (this.checkCollisionBottleAndEndboss()) {
+            this.playAnimation(this.IMAGES_SPLASH);
         } else {
             this.playAnimation(this.IMAGES_SPLASH);
             this.AUDIO_broke.play();
